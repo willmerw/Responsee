@@ -1,8 +1,6 @@
 from kivy.app import App
 from kivy.properties import ObjectProperty
-
-from kivy.uix.gridlayout import GridLayout
-
+from kivy.uix.floatlayout import FloatLayout
 from kivy.core.window import Window
 import sqlite3
 import matplotlib.pyplot as plt
@@ -10,7 +8,7 @@ import numpy as np
 
 
 
-class NewResponsee(GridLayout):
+class NewResponsee(FloatLayout):
     # lista som representerar antalet tryck på respektive gubbe
     alla_smileys = [0, 0, 0, 0]  # mycket missnojd, missnojd, nojd, mycket nojd
 
@@ -18,9 +16,9 @@ class NewResponsee(GridLayout):
     missnojd = ObjectProperty(None)
     nojd = ObjectProperty(None)
     mycket_nojd = ObjectProperty(None)
-    bar_data = ObjectProperty(None)
     pie_data = ObjectProperty(None)
     min_label = ObjectProperty(None)
+    bar_data = ObjectProperty
 
     # visar att man trycker på en knapp, först byter bild (on click), sen tillbaka till orginal (on release)
     def mycket_missnojd_on(self):
@@ -94,7 +92,6 @@ class NewResponsee(GridLayout):
             plt.legend()
             plt.show()
 
-print("hello")
 
 class ResponseeTwo(App):
     Window.clearcolor = (1, 1, 1, 1)

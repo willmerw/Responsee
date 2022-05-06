@@ -1,14 +1,19 @@
-NewResponsee:
+<Button>
+    size_hint: 0.05,0.1
+    background_color: 0,0,0,0
+
+<Image>
+    center_x: self.parent.center_x
+    center_y: self.parent.center_y
 
 <NewResponsee>:
-    name : "main"
+
+    bar_data: bar_data
     mycket_missnojd: mycket_missnojd
     missnojd: missnojd
     nojd: nojd
     mycket_nojd: mycket_nojd
-    bar_data: bar_data
     pie_data: pie_data
-
     min_label: min_label
 
     spacing: 50
@@ -20,99 +25,82 @@ NewResponsee:
         text: "Hur var dagens lektion?"
         color: 0,0,0
         font_size: 48
+        pos_hint: {"top": 0.9}
         size_hint: (1, .20)
         # on_release: root.animate_it(self)
 
 
-    BoxLayout:
-        cols: 2
-        size_hint: (1, .20)
-
-        Label: 
-            text: ""
-
-        Button:
-            id: mycket_missnojd
-            background_color: 0,0,0,0
-            size_hint: (1,1)
-            on_press: root.mycket_missnojd_on()
-            on_release: root.mycket_missnojd_off()
-            on_release: root.knapp_tryck(self)
+    Button:
+        id: mycket_missnojd
+        on_press: root.mycket_missnojd_on()
+        on_release: root.mycket_missnojd_off()
+        on_release: root.knapp_tryck(self)
+        pos_hint: {"x": 0.16,"top": 0.6}
             
-            Image:
-                id: mycket_missnojd_bilden
-                source: "arg.png"
-                center_x: self.parent.center_x
-                center_y: self.parent.top
+        Image:
+            id: mycket_missnojd_bilden
+            source: "arg.png"
 
-        Button:
-            id: missnojd
-            background_color: 0,0,0,0
-            on_press: root.missnojd_on()
-            on_release: root.missnojd_off()
-            on_release: root.knapp_tryck(self)
-            Image:
-                id: missnojd_bilden
-                source: "missnojd.png"
-                center_x: self.parent.center_x
-                center_y: self.parent.top      
+    Button:
+        id: missnojd
+        on_press: root.missnojd_on()
+        on_release: root.missnojd_off()
+        on_release: root.knapp_tryck(self)
+        pos_hint: {"x": 0.37,"top": 0.6}
+        Image:
+            id: missnojd_bilden
+            source: "missnojd.png"
 
-        Button:
-            id: nojd
-            background_color: 0,0,0,0
-            on_press: root.nojd_on()
-            on_release: root.nojd_off()
-            on_release: root.knapp_tryck(self)
-            Image:
-                id: nojd_bilden
-                source: "nojd.png"
-                center_x: self.parent.center_x
-                center_y: self.parent.top
+    Button:
+        id: nojd
+        on_press: root.nojd_on()
+        on_release: root.nojd_off()
+        on_release: root.knapp_tryck(self)
+        pos_hint: {"x": 0.58,"top": 0.6}
+        Image:
+            id: nojd_bilden
+            source: "nojd.png"
 
-        Button:
-            id: mycket_nojd
-            background_color: 0,0,0,0 
-            on_press: root.mycket_nojd_on()
-            on_release: root.mycket_nojd_off()
-            on_release: root.knapp_tryck(self)
-            Image:
-                id: mycket_nojd_bilden
-                source: "mycket nojd.png"
-                center_x: self.parent.center_x
-                center_y: self.parent.top
+    Button:
+        id: mycket_nojd
+        on_press: root.mycket_nojd_on()
+        on_release: root.mycket_nojd_off()
+        on_release: root.knapp_tryck(self)
+        pos_hint: {"x": 0.79,"top": 0.6}
+        Image:
+            id: mycket_nojd_bilden
+            source: "mycket nojd.png"
 
-        
 
-        BoxLayout:
-            orientation: 'vertical'
-            RoundedButton:
+    RoundedButton:
 
-                id: bar_data
-                text: "Visa data (Bar Chart)"
-                font_size: 12
-                on_press: root.knapp_tryck(self)
-                
-                size_hint: (None, None)
-                width: 120
-                height: 60
-            
-            
-            
-            RoundedButton:
+        id: pie_data
+        text: "Visa data (Pie Chart)"
+        font_size: 12
+        on_press: root.knapp_tryck(self)
+        # on_press: root.visa()
+        size_hint: (None, None)
+        width: 120
+        height: 60
 
-                id: pie_data
-                text: "Visa data (Pie Chart)"
-                font_size: 12
-                
-                on_press: root.knapp_tryck(self)
-                # on_press: root.visa()
-                size_hint: (None, None)
-                width: 120
-                height: 60
+    RoundedButton:
+
+        id: bar_data
+
+        pos_hint: {"x": 0.8}
+        text: "Visa data (Bar Chart)"
+        font_size: 12
+        on_press: root.knapp_tryck(self)
+        # on_press: root.visa()
+        size_hint: (None, None)
+        width: 120
+        height: 60
+
 
 
 <RoundedButton@Button>
-    background_color: (0,0,0,0)
+
+    background_color: (1,0,0,1)
     background_normal: ""
     canvas.before:
         Color:
