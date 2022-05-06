@@ -57,14 +57,6 @@ class NewResponsee(FloatLayout):
         elif instance == self.mycket_nojd:
             self.alla_smileys[3] += 1
 
-        # kommer tas bort sedan
-        print("Mycket Missnöjd:", self.alla_smileys[0])
-        print("Missnöjd:", self.alla_smileys[1])
-        print("Nöjd:", self.alla_smileys[2])
-        print("Mycket nöjd:", self.alla_smileys[3])
-        print(self.alla_smileys)
-        print(".........................................")
-
         if instance == self.bar_data:
             plt.style.use("fivethirtyeight")
             w = 0.2

@@ -60,6 +60,7 @@
         Image:
             id: nojd_bilden
             source: "nojd.png"
+            
 
     Button:
         id: mycket_nojd
@@ -87,7 +88,7 @@
 
         id: bar_data
 
-        pos_hint: {"x": 0.8}
+        pos_hint: {"x": 0,"top":0.2}
         text: "Visa data (Bar Chart)"
         font_size: 12
         on_press: root.knapp_tryck(self)
@@ -100,7 +101,7 @@
 
 <RoundedButton@Button>
 
-    background_color: (1,0,0,1)
+    background_color: (0,0,0,0)
     background_normal: ""
     canvas.before:
         Color:
