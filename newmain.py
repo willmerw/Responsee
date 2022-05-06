@@ -94,6 +94,7 @@ class NewResponsee(GridLayout):
             plt.legend()
             plt.show()
 
+print("hello")
 
 class ResponseeTwo(App):
     Window.clearcolor = (1, 1, 1, 1)
