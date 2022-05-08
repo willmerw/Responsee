@@ -18,36 +18,51 @@ class NewResponsee(FloatLayout):
     mycket_nojd = ObjectProperty(None)
     pie_data = ObjectProperty(None)
     min_label = ObjectProperty(None)
-    bar_data = ObjectProperty
+    bar_data = ObjectProperty(None)
+
+    smiley_list = ["mycket_missnojd","missnojd","nojd","mycket_nojd"]
+
+    selected_smiley = None
 
     # visar att man trycker på en knapp, först byter bild (on click), sen tillbaka till orginal (on release)
-    def mycket_missnojd_on(self):
-        self.ids.mycket_missnojd_bilden.source = "arg1.png"
-
-    def mycket_missnojd_off(self):
-        self.ids.mycket_missnojd_bilden.source = "arg.png"
-
-    def missnojd_on(self):
-        self.ids.missnojd_bilden.source = "missnojd1.png"
-
-    def missnojd_off(self):
-        self.ids.missnojd_bilden.source = "missnojd.png"
-
-    def nojd_on(self):
-        self.ids.nojd_bilden.source = "nojd1.png"
-
-    def nojd_off(self):
-        self.ids.nojd_bilden.source = "nojd.png"
-
-    def mycket_nojd_on(self):
-        self.ids.mycket_nojd_bilden.source = "mycket nojd1.png"
-
-    def mycket_nojd_off(self):
-        self.ids.mycket_nojd_bilden.source = "mycket nojd.png"
+    # def mycket_missnojd_on(self):
+    #     self.ids.mycket_missnojd_bilden.source = "arg1.png"
+    #
+    # def mycket_missnojd_off(self):
+    #     self.ids.mycket_missnojd_bilden.source = "arg.png"
+    #
+    # def missnojd_on(self):
+    #     self.ids.missnojd_bilden.source = "missnojd1.png"
+    #
+    # def missnojd_off(self):
+    #     self.ids.missnojd_bilden.source = "missnojd.png"
+    #
+    # def nojd_on(self):
+    #     self.ids.nojd_bilden.source = "nojd1.png"
+    #
+    # def nojd_off(self):
+    #     self.ids.nojd_bilden.source = "nojd.png"
+    #
+    # def mycket_nojd_on(self):
+    #     self.ids.mycket_nojd_bilden.source = "mycket nojd1.png"
+    #
+    # def mycket_nojd_off(self):
+    #     self.ids.mycket_nojd_bilden.source = "mycket nojd.png"
 
         # lägger till 1 för varje tryck
 
     def knapp_tryck(self, instance):
+
+        self.selected_smiley = instance
+
+        # for i in self.ids:
+        #     if i in self.smiley_list:
+        #         self.ids[i].pos_hint = {"x": self.ids[i].pos_hint["x"] , "top": 0.6}
+
+
+        # instance.pos_hint = {"x": instance.pos_hint["x"], "top": 0.7} #flyttar upp smileys
+
+
         if instance == self.mycket_missnojd:
             self.alla_smileys[0] += 1
         elif instance == self.missnojd:
@@ -57,6 +72,8 @@ class NewResponsee(FloatLayout):
         elif instance == self.mycket_nojd:
             self.alla_smileys[3] += 1
 
+
+    def stat_button(self, instance):
         if instance == self.bar_data:
             plt.style.use("fivethirtyeight")
             w = 0.2
@@ -83,6 +100,8 @@ class NewResponsee(FloatLayout):
             plt.tight_layout()
             plt.legend()
             plt.show()
+
+
 
 
 class ResponseeTwo(App):
