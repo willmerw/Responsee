@@ -7,11 +7,6 @@
     center_y: self.parent.center_y
 
 
-
-
-
-
-
 <NewResponsee>:
 
     bar_data: bar_data
@@ -21,11 +16,12 @@
     mycket_nojd: mycket_nojd
     pie_data: pie_data
     min_label: min_label
+    submit: submit
 
     spacing: 50
     padding: 20
     rows: 2
-    
+
     Label:
         id: min_label
         text: "Hur var dagens lektion?"
@@ -35,13 +31,9 @@
         size_hint: (1, .20)
         # on_release: root.animate_it(self)
 
-
-
     Smiley:
-
         id: mycket_missnojd
         pos_hint: {"x": 0.16,"top": 0.6}
-
         Image:
             id: mycket_missnojd_bilden
             source: "arg.png"
@@ -69,12 +61,14 @@
             source: "mycket nojd.png"
 
 
+
+
     RoundedButton:
 
         id: pie_data
         text: "Visa data (Pie Chart)"
         font_size: 12
-        on_press: root.statbutton(self)
+        on_press: root.stat_button(self)
         # on_press: root.visa()
         size_hint: (None, None)
         width: 120
@@ -94,16 +88,29 @@
         height: 60
 
     Button:
-        id: test_knapp
-        text: "hello"
-        pos_hint: {"y": 2}
+        id: submit
+        text: "Submit"
+        pos_hint: {"x":1}
+        size_hint: 0.15, 0.07
         background_color: 0,0,0,1
-        visible: False
+        on_press: root.submit_button()
 
 
+    QuestButton:
+        id: qst1
+        pos_hint: {"x": 0.2, "top": 0.4}
 
+    QuestButton:
+        id: qst2
+        pos_hint: {"x": 0.6, "top": 0.4}
 
+    QuestButton:
+        id: qst3
+        pos_hint: {"x": 0.2, "top": 0.2}
 
+    QuestButton:
+        id: qst4
+        pos_hint: {"x": 0.6, "top": 0.2}
 
 <RoundedButton@Button>
 
@@ -117,16 +124,25 @@
             pos: self.pos
             radius: [10] # omkring rektangel
 
+<QuestButton@ToggleButton>:
 
-<Smiley@ToggleButton>
+    group: "questions"
+    size_hint: 0.2, 0.05
+
+
+    background_color: 1,1,1,0
+
+
+<Smiley@ToggleButton>:
+
 
     group: "smileys"
 
     on_state:
+
         if self.state == "down": \
-        self.pos_hint = {"x":self.pos_hint["x"],"top":self.pos_hint["top"] + 0.1}; NewResponsee.test_knapp.text = "h"
-
-
-
+        self.pos_hint = {"x":self.pos_hint["x"],"top":self.pos_hint["top"] + 0.1}; \
+        root.parent.checked()
 
         if self.state == "normal": self.pos_hint = {"x":self.pos_hint["x"],"top": 0.6}
+

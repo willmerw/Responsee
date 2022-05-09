@@ -2,10 +2,10 @@ from kivy.app import App
 from kivy.properties import ObjectProperty
 from kivy.uix.floatlayout import FloatLayout
 from kivy.core.window import Window
+from kivy.uix.togglebutton import ToggleButton
 import sqlite3
 import matplotlib.pyplot as plt
 import numpy as np
-
 
 
 class NewResponsee(FloatLayout):
@@ -19,58 +19,48 @@ class NewResponsee(FloatLayout):
     pie_data = ObjectProperty(None)
     min_label = ObjectProperty(None)
     bar_data = ObjectProperty(None)
+    submit = ObjectProperty(None)
 
-    smiley_list = ["mycket_missnojd","missnojd","nojd","mycket_nojd"]
+    smiley_list = ["mycket_missnojd", "missnojd", "nojd", "mycket_nojd"]
 
     selected_smiley = None
 
-    # visar att man trycker på en knapp, först byter bild (on click), sen tillbaka till orginal (on release)
-    # def mycket_missnojd_on(self):
-    #     self.ids.mycket_missnojd_bilden.source = "arg1.png"
-    #
-    # def mycket_missnojd_off(self):
-    #     self.ids.mycket_missnojd_bilden.source = "arg.png"
-    #
-    # def missnojd_on(self):
-    #     self.ids.missnojd_bilden.source = "missnojd1.png"
-    #
-    # def missnojd_off(self):
-    #     self.ids.missnojd_bilden.source = "missnojd.png"
-    #
-    # def nojd_on(self):
-    #     self.ids.nojd_bilden.source = "nojd1.png"
-    #
-    # def nojd_off(self):
-    #     self.ids.nojd_bilden.source = "nojd.png"
-    #
-    # def mycket_nojd_on(self):
-    #     self.ids.mycket_nojd_bilden.source = "mycket nojd1.png"
-    #
-    # def mycket_nojd_off(self):
-    #     self.ids.mycket_nojd_bilden.source = "mycket nojd.png"
+    def checked(self):
+        self.ids["submit"].pos_hint = {"x": 0.425}
+        for i in self.children:
+            try:
+                if i.group == "questions":
+                    i.background_color = (1,1,1,1)
+            except AttributeError:
+                pass
 
-        # lägger till 1 för varje tryck
+    def submit_button(self):
 
-    def knapp_tryck(self, instance):
+        for i in self.smiley_list:
+            if self.ids[i].state == "down":
 
-        self.selected_smiley = instance
+                self.selected_smiley = self.ids[i]
 
-        # for i in self.ids:
-        #     if i in self.smiley_list:
-        #         self.ids[i].pos_hint = {"x": self.ids[i].pos_hint["x"] , "top": 0.6}
+                if self.selected_smiley == self.mycket_missnojd:
+                    self.alla_smileys[0] += 1
+                elif self.selected_smiley == self.missnojd:
+                    self.alla_smileys[1] += 1
+                elif self.selected_smiley == self.nojd:
+                    self.alla_smileys[2] += 1
+                elif self.selected_smiley == self.mycket_nojd:
+                    self.alla_smileys[3] += 1
 
+                self.ids[i].state = "normal"
 
-        # instance.pos_hint = {"x": instance.pos_hint["x"], "top": 0.7} #flyttar upp smileys
+                self.ids["submit"].pos_hint = {"x": 1}
 
-
-        if instance == self.mycket_missnojd:
-            self.alla_smileys[0] += 1
-        elif instance == self.missnojd:
-            self.alla_smileys[1] += 1
-        elif instance == self.nojd:
-            self.alla_smileys[2] += 1
-        elif instance == self.mycket_nojd:
-            self.alla_smileys[3] += 1
+                for i in self.children:
+                    try:
+                        if i.group == "questions":
+                            i.background_color = (1, 1, 1, 0)
+                            i.state = "normal"
+                    except AttributeError:
+                        pass
 
 
     def stat_button(self, instance):
@@ -102,14 +92,13 @@ class NewResponsee(FloatLayout):
             plt.show()
 
 
-
-
 class ResponseeTwo(App):
     Window.clearcolor = (1, 1, 1, 1)
 
     def build(self):
         return NewResponsee()
 
+app = ResponseeTwo
 
 if __name__ == "__main__":
     ResponseeTwo().run()
