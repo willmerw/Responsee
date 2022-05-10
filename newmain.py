@@ -3,6 +3,9 @@ from kivy.properties import ObjectProperty
 from kivy.uix.floatlayout import FloatLayout
 from kivy.core.window import Window
 from kivy.uix.togglebutton import ToggleButton
+from kivy.uix.textinput import TextInput
+from kivy.uix.popup import Popup
+
 import sqlite3
 import matplotlib.pyplot as plt
 import numpy as np
@@ -10,7 +13,7 @@ import numpy as np
 
 class NewResponsee(FloatLayout):
     # lista som representerar antalet tryck på respektive gubbe
-    alla_smileys = [0, 0, 0, 0]  # mycket missnojd, missnojd, nojd, mycket nojd
+    alla_smileys = [0, 0, 0, 0]  # (mycket missnojd, missnojd, nojd, mycket nojd)
 
     mycket_missnojd = ObjectProperty(None)
     missnojd = ObjectProperty(None)
@@ -91,12 +94,31 @@ class NewResponsee(FloatLayout):
             plt.legend()
             plt.show()
 
+    def open_questions(self):
+        question_menu()
+
+class ChangeQuestion(FloatLayout):
+
+    def save(self):
+        print(self.children)
+    pass
+
+
+def question_menu():
+    show = ChangeQuestion()
+
+    popupWindow = Popup(title="Popup Window", content=show, size_hint=(1,1))
+
+
+
+    popupWindow.open()
 
 class ResponseeTwo(App):
     Window.clearcolor = (1, 1, 1, 1)
 
     def build(self):
-        return NewResponsee()
+        r = NewResponsee()
+        return r
 
 app = ResponseeTwo
 

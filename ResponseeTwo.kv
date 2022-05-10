@@ -112,6 +112,14 @@
         id: qst4
         pos_hint: {"x": 0.6, "top": 0.2}
 
+    Button:
+        background_color: 1,1,1,1
+        text: "test"
+        size_hint: 0.1,0.1
+        pos_hint: {"top": 0.5}
+        on_release:
+            root.open_questions()
+
 <RoundedButton@Button>
 
     background_color: (0,0,0,0)
@@ -145,4 +153,33 @@
         root.parent.checked()
 
         if self.state == "normal": self.pos_hint = {"x":self.pos_hint["x"],"top": 0.6}
+
+<Questions@TextInput>:
+
+    multiline: False
+    size_hint: 0.3,0.06
+
+
+
+
+<ChangeQuestion>:
+
+    Questions:
+        pos_hint: {"x": 0.35,"top": 0.3}
+    Questions:
+        pos_hint: {"x": 0.35,"top": 0.4}
+    Questions:
+        pos_hint: {"x": 0.35,"top": 0.5}
+    Questions:
+        pos_hint: {"x": 0.35,"top": 0.6}
+
+    Button:
+        background_color: 0,0,1,1
+        pos_hint: {"x": 0.35,"top": 0.2}
+
+        text: "save"
+        size_hint: 0.3, 0.06
+        on_release:
+            root.save()
+
 
