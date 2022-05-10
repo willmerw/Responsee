@@ -96,25 +96,10 @@
         on_press: root.submit_button()
 
 
-    QuestButton:
-        id: qst1
-        pos_hint: {"x": 0.2, "top": 0.4}
-
-    QuestButton:
-        id: qst2
-        pos_hint: {"x": 0.6, "top": 0.4}
-
-    QuestButton:
-        id: qst3
-        pos_hint: {"x": 0.2, "top": 0.2}
-
-    QuestButton:
-        id: qst4
-        pos_hint: {"x": 0.6, "top": 0.2}
 
     Button:
         background_color: 1,1,1,1
-        text: "test"
+        text: "Ändra svar"
         size_hint: 0.1,0.1
         pos_hint: {"top": 0.5}
         on_release:
@@ -150,7 +135,7 @@
 
         if self.state == "down": \
         self.pos_hint = {"x":self.pos_hint["x"],"top":self.pos_hint["top"] + 0.1}; \
-        root.parent.checked()
+        root.parent.checked(self)
 
         if self.state == "normal": self.pos_hint = {"x":self.pos_hint["x"],"top": 0.6}
 
@@ -163,23 +148,14 @@
 
 
 <ChangeQuestion>:
+    Label:
+        text: "Hur var dagens lektion?"
+        color: 0,0,0
+        font_size: 48
+        pos_hint: {"top": 0.95}
+        size_hint: (1, .20)
+        # on_release: root.animate_it(self)
 
-    Questions:
-        pos_hint: {"x": 0.35,"top": 0.3}
-    Questions:
-        pos_hint: {"x": 0.35,"top": 0.4}
-    Questions:
-        pos_hint: {"x": 0.35,"top": 0.5}
-    Questions:
-        pos_hint: {"x": 0.35,"top": 0.6}
 
-    Button:
-        background_color: 0,0,1,1
-        pos_hint: {"x": 0.35,"top": 0.2}
-
-        text: "save"
-        size_hint: 0.3, 0.06
-        on_release:
-            root.save()
 
 
