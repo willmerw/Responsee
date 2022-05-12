@@ -15,21 +15,12 @@
     nojd: nojd
     mycket_nojd: mycket_nojd
     pie_data: pie_data
-    min_label: min_label
     submit: submit
 
     spacing: 50
     padding: 20
     rows: 2
 
-    Label:
-        id: min_label
-        text: "Hur var dagens lektion?"
-        color: 0,0,0
-        font_size: 48
-        pos_hint: {"top": 0.95}
-        size_hint: (1, .20)
-        # on_release: root.animate_it(self)
 
     Smiley:
         id: mycket_missnojd
@@ -105,6 +96,14 @@
         on_release:
             root.open_questions()
 
+    Button:
+        background_color: 1,1,1,1
+        text: "visa"
+        size_hint: 0.1,0.1
+        pos_hint: {"top": 0.4}
+        on_release:
+            root.open_questionstats()
+
 <RoundedButton@Button>
 
     background_color: (0,0,0,0)
@@ -148,13 +147,7 @@
 
 
 <ChangeQuestion>:
-    Label:
-        text: "Hur var dagens lektion?"
-        color: 0,0,0
-        font_size: 48
-        pos_hint: {"top": 0.95}
-        size_hint: (1, .20)
-        # on_release: root.animate_it(self)
+
 
 
 
